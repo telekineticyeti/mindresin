@@ -1,11 +1,8 @@
-// Variables
-$default-transition-duration : 350ms
-
 // Color Palette
 $orange				: #B25828
 $beige				: #D2C6A6
 $cream				: #EBDBB2
-$chocolate			: #664726	
+$chocolate			: #664726
 $peach				: #E8B36D
 $teal				: #006A67
 $ocean				: #094E6B
@@ -23,50 +20,24 @@ $nanoOrange			: #C55D40
 $nanoBlush			: #E47468
 $nanoWhite			: #FEFEFF
 
-// $total-columns		: 8
-// $column-width		: 54px
-// $gutter-width		: 30px
-// $grid-padding		: $gutter-width
+// Variables
+$default-transition-duration : 350ms
 
-// Common Breakpoints
-// $tablet				: 10
-// $desktop			: 12
-
+// Breakpoints
 $mobile				: 480px
 $tablet				: 700px
-$tablet-col			: 10
 $desktop			: 900px
-$desktop-col		: 12
 
-// Sprite & Image declarations
+// Image Sprites
+@import "sprites"
 
-
-
-// $ui-layout: smart
-// $ui-spacing: 20px
-
-$ui-header_tile-repeat: repeat-x !default
-$ui-tweet_t-repeat: repeat-x !default
-
-@import "ui/*.png"
-
-// Normalize v2 - http://github.com/necolas/normalize.css
-@import "normalize"
+// Normalize v3.0.1
+@import "_vendor/normalize"
 
 // Personal library of useful mixins and extenders
-@import "resin"
+@import "_vendor/resin"
 
-
-// Importing only the specific compass modules that we need results
-// in Sass compiling slightly faster.
-
-@import "compass/css3/box-shadow"
-@import "compass/css3/transition"
-@import "compass/css3/text-shadow"
-@import "compass/css3/font-face"
-@import "compass/css3/transform"
-@import "compass/css3/filter"
-@import "compass/css3/border-radius"
+@import "compass"
 @import "susy"
 @import "breakpoint"
 
@@ -76,9 +47,11 @@ $ui-tweet_t-repeat: repeat-x !default
 @import "_logo"
 @import "_navigation"
 @import "_page_home"
-// @import "_page_about"
+@import "_page_about"
 @import "_page_portfolio"
-// @import "_page_contact"
-// @import "_page_blog"
+@import "_page_contact"
+@import "_page_blog"
 @import "_page_placeholder"
-@import "_responsiveslider"
+
+// Stylesheet for  http://responsiveslides.com v1.54 by @viljamis
+@import "_vendor/responsiveslider"

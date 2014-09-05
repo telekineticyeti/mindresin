@@ -25,12 +25,11 @@ body.blog
 			background: $teal
 			border-bottom: 3px solid darken($teal, 10%)
 
-		+at-breakpoint ($tablet)
-			+span-columns (2, 6)
-			+nth-omega (3n)
+		+breakpoint($tablet)
+			+span(2 of 6)
 
-		+at-breakpoint ($desktop)
-			+span-columns (3, 9)
+			&:nth-of-type(3n)
+				+last
 
 		span
 			display: block

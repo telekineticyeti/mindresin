@@ -57,7 +57,7 @@ body.contact
 		background: transparent image-url('contact/stamps.png') no-repeat
 			size: 100% auto
 
-	+at-breakpoint ($tablet)
+	+breakpoint ($tablet)
 		.column
 			position: relative
 			width: 48%
@@ -172,7 +172,7 @@ body.contact
 
 	> div
 		position: relative
-		+bleed(30px)
+		// +bleed(30px)
 
 	.over
 		z-index: 1
@@ -210,7 +210,7 @@ body.contact
 		.inner
 			position: relative
 			height: 120px
-			+bleed($gutter-width)
+			// +bleed($gutter-width)
 
 		&:before, &:after
 			content: ""
