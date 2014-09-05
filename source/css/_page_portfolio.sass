@@ -1,0 +1,338 @@
+body.portfolio
+
+	.boxit
+		padding: 0 30px
+
+	main
+		background-color: #E9F0F1
+		// +span(1 of 1)
+
+	article.sample
+		$captionheight: 90px
+		position: relative
+		z-index: 1
+		margin-bottom: 30px
+		overflow: hidden
+		+transition(opacity 400ms 200ms ease-in-out)
+
+		+breakpoint ($tablet)
+			+gallery(5 of 10)
+
+		img
+			position: relative
+			z-index: -1
+			display: block
+			width: 100%
+			height: auto
+			+transition(400ms 400ms)
+
+		.caption
+			pointer-events: none
+			position: absolute
+			left: 0
+			right: 0
+			bottom: -$captionheight - 20
+			height: $captionheight
+			padding: 10px 10px 0
+			+transition(400ms 400ms ease-in-out)
+
+			background: $teal
+			color: white
+			font-size: 12px
+			+text-shadow(1px 1px 0 rgba(black, .5) )
+
+			object
+				pointer-events: none
+
+			&:before // Tapered Shadow
+				position: absolute
+				z-index: -1
+				left: 0
+				right: 0
+				top: 0
+				height: 40px
+				+box-shadow( 0 0 8px 3px rgba(black, .65) )
+				+border-top-left-radius(150px 10px)
+				+border-top-right-radius(150px 10px)
+				content: " "
+
+			h3
+				margin: 0 0 5px
+				font-size: 16px
+				line-height: 18px
+				
+			p
+				margin: 0
+				font-size: 12px
+				line-height: 18px
+
+		a.view
+			display: block
+			pointer-events: all
+			float: right
+			width: 40px
+			height: auto
+			margin: 7px 0 0 10px
+			padding: 19px 12px 12px
+			+border-radius(10px)
+			background: darken($teal, 10%)
+			border-bottom: 6px solid darken($teal, 20%)
+			+transition(background-color 200ms 0s ease-in-out)
+			outline: 0
+
+			path
+				fill: $offWhite
+
+			&:hover
+				background: lighten($teal, 10%)
+				border-color: darken($teal, 10%)
+
+				path
+					fill: white
+
+			&:active
+				background: darken($orange, 5%)
+				border-bottom-width: 1px
+				margin-top: 12px
+
+		&:hover, &.selected
+			img
+				+transform( translateY(-$captionheight / 3) )
+				+transition(600ms 0s ease-in-out)
+			.caption
+				+transition(300ms 0s ease-in-out)
+				bottom: 0
+
+		&.fade
+			+transition(opacity 500ms 500ms ease-in-out)
+			opacity: .35 !important
+
+		&.selected
+			a.view
+				background: darken($orange, 5%)
+				border-color: darken($orange, 20%)
+			
+		.preview
+			display: table-row
+
+		.frame
+			overflow: hidden
+			position: relative
+			
+			img 
+				width: 100%
+				height: auto
+				opacity: .9
+				+transition(500ms)
+				+transition-delay(250ms)
+
+		.spyglass
+			display: none
+			width: 77px
+			height: 185px
+			background: image-url("magnifying_glass.png")
+			position: absolute
+			left: -300px
+			top: 300px
+			pointer-events: none
+			+single-transition(all, 500ms, ease, 250ms)
+
+			+breakpoint ($tablet)
+				display: block
+
+	///////////////////////////////
+	// Expanded view
+	///////////////////////////////
+
+	.feature
+		position: relative
+		z-index: 40
+		display: block
+		float: left
+		width: 100%
+		padding: 0 30px
+		margin: 0 -30px 30px
+		background: $ocean
+		
+		.indicator
+			position: absolute
+			top: -20px
+			height: 0
+			width: 0
+			border-bottom: 20px solid #0D2A38
+			border-left: 20px solid transparent
+			border-right: 20px solid transparent
+			+transition(500ms)
+
+		a.scrollToFeature
+			position: absolute
+			bottom: 0px
+			left: 0
+			height: 1px
+			width: 1px
+
+		object.closeFeature
+			z-index: 100
+			cursor: pointer
+
+			svg
+				position: absolute
+				top: 20px
+				right: 20px
+				width: 24px
+				height: 24px
+
+			path
+				fill: $awYissStone
+				+transition(200ms)
+
+			&:hover
+				path
+					fill: $orange
+
+		.content
+			position: relative
+			width: 100%
+			min-height: 410px
+			overflow: hidden
+			padding-left: 30px
+			padding-right: 30px
+			margin-left: -30px
+			margin-left: -30px
+
+			&:before, &:after  // Tapered Shadows
+				position: absolute
+				z-index: -1
+				left: 0
+				right: 0
+				height: 40px
+				+box-shadow( 0 0 10px 5px rgba(black, .6) )
+				content: " "
+
+			&:before
+				top: -40px
+				+border-bottom-left-radius(150px 10px)
+				+border-bottom-right-radius(150px 10px)
+				
+			&:after
+				bottom: -40px
+				+border-top-left-radius(150px 10px)
+				+border-top-right-radius(150px 10px)
+
+		.showcase
+			position: relative
+			@extend %clearfix
+			margin-top: 50px
+			margin-bottom: 30px
+			overflow: hidden
+
+			// Fixes Firefox Bug: Opacity animations showing outside overflow
+			// http://jbkflex.wordpress.com/2013/04/04/css3-transformations-showing-content-outside-overflowhidden-region-in-firefoxandroid/
+			background: $nanoTeal
+			opacity: .99
+
+			// ul.slides
+
+			nav
+				position: absolute
+				left: 0
+				right: 0
+				top: 0
+				bottom: 0
+				width: 100%
+				height: 100%
+				z-index: 10
+
+				a.pofoslider_nav
+					position: absolute
+					width: 50%
+					height: 100%
+					top: 0
+					bottom: 0
+					outline: 0
+					text-indent: -99em
+
+					&:before
+						position: absolute
+						z-index: -1
+						width: 50px
+						top: 5%
+						bottom: 5%
+						+box-shadow( 0 0 10px 3px rgba(#0ff, .75) )
+						content: " "
+						opacity: 0
+						+transition(opacity 500ms 50ms ease-in-out)
+
+					&.prev
+						left: 0
+
+						&:before
+							left: -50px
+							+border-bottom-right-radius(10px 150px)
+							+border-top-right-radius(10px 150px)
+
+					&.next
+						right: 0
+
+						&:before
+							right: -50px
+							+border-bottom-left-radius(10px 150px)
+							+border-top-left-radius(10px 150px)
+
+					&:hover:before
+						opacity: 1
+
+		.details
+			margin: 30px 30px 30px 0
+			color: $nanoWhite
+
+			h3
+				margin: 0
+				text-transform: uppercase
+				color: $nanoPeach
+
+			h4
+				margin: 5px 0
+				color: $nanoBlush
+
+	.sidebar-disabled
+		.feature
+			+breakpoint ($tablet)
+				.showcase
+					// +span-columns (7, $tablet)
+
+				.details				
+					// +span-columns (3 omega, $tablet)
+
+			+breakpoint ($desktop)
+				.showcase
+					margin-top: 30px
+					// +span-columns (8, $desktop)
+
+				.details				
+					// +span-columns (4 omega, $desktop)
+	
+		article.sample
+
+			+breakpoint ($tablet)
+				+gallery(5 of 10)
+
+			// 	&:nth-of-type(2n)
+			// 		+last
+
+			+breakpoint ($desktop)
+				+gallery(4 of 12)
+
+				// &:nth-of-type(3n)
+				// 	+span
+		// 	+breakpoint ($tablet)
+		// 		+grid-settings(10, 54px, 30px, 0)
+		// 			+span-columns(5, 10)
+		// 			+nth-omega (2n, of-type)
+
+		// 	+breakpoint ($desktop)
+		// 		+grid-settings(12, 54px, 30px, 0)
+		// 			+span-columns(4, 12)
+		// 			+remove-nth-omega (2n, of-type, $desktop)
+		// 			+remove-nth-omega (3n, of-type, $desktop)
+		// 			+nth-omega (3n, of-type)

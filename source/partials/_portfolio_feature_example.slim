@@ -1,0 +1,36 @@
+coffee:
+	$ ->
+		$(".slides").responsiveSlides
+			speed				: 900,
+			timeout				: 6000,
+			pager				: false,
+			nav					: true,
+			pause				: true,
+			prevText			: '<',
+			nextText			: '>',
+			navContainer		: '.showcase nav'
+			namespace			: 'pofoslider'
+
+div.feature data-homerow="1" style="display: block;"
+
+	.indicator style="left: 563px;"
+
+	.content style="display: block;"
+
+		.showcase
+			nav
+  			ul.slides
+  				li =image_tag 'portfolio/kulturhuset-banken_01.jpg'
+  				li =image_tag 'portfolio/kulturhuset-banken_02.jpg'
+  				li =image_tag lorem.image "700x408", :background_color => '666', :text => 'butts'
+  				li =image_tag lorem.image "700x408", :background_color => '000', :text => 'cocks'
+  				li =image_tag lorem.image "700x408", :background_color => '333', :text => 'mingegargle'
+
+		.details
+			h3 Project title
+			h4 UI Design & Identity
+			p =lorem.paragraphs 1
+
+	object.closeFeature
+		svg xml:space="preserve" viewBox="0 0 18 18" height="18px" width="18px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1"
+			path d="M10.061,9L18,16.94l-1.057,1.058l-7.941-7.939L1.059,18L0,16.94L7.942,9L0,1.059L1.059,0l7.943,7.941l7.941-7.939L18,1.061 L10.061,9z"

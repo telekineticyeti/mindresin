@@ -1,0 +1,125 @@
+html
+	overflow-x: hidden
+
+body
+	background: $beige image-url("body_background.png")
+	margin: 0 10px
+
+#page
+	+container(978px)
+	position: relative
+	+box-shadow ( 0 3px 12px 0 rgba(black, .3) )
+	margin-top: -2px
+
+// Push content under the header
+%headerpush:before
+	display: block
+	visibility: hidden
+	height: 180px
+	font-size: 1
+	content: " "
+
+main
+	position: relative
+	@extend %headerpush
+	@extend %clearfix
+
+	+breakpoint($tablet)
+		+span(7 of 10)
+
+	+breakpoint($desktop)
+		+span(9 of 12)
+
+#sidebar
+	@extend %headerpush
+	position: absolute
+	z-index: 1
+	display: none
+	top: 0
+	right: 0
+	bottom: 0
+	background: $peach image-url("sidebar_background.png")
+	+single-box-shadow ( -3px, -10px, 8px, 0, rgba(0,0,0,.1) )
+	+transition(100ms)
+
+	+breakpoint($tablet)
+		+span(3 of 10 last)
+
+	+breakpoint($desktop)
+		+span(3 of 12 last)
+
+
+//////////////////////////////////
+//	Sidebar disabled
+//////////////////////////////////
+
+#page.sidebar-enabled #sidebar
+	+breakpoint ($tablet)
+		display: block
+
+
+#page.sidebar-disabled
+	main
+		+breakpoint ($tablet)
+			+span(10 of 10)
+
+	#sidebar
+		overflow: hidden
+		width: 0
+		padding: 0
+
+	.toggleSidebar
+		.icon
+			+ui-sprite ("sidebar_show")
+
+	#masthead:before
+		width: 0
+
+.toggleSidebar
+	position: absolute
+	display: none
+	z-index: 100
+	top: 7px
+	right: 30px
+	height: 26px
+	background: rgba(white, .25)
+
+	.icon
+		float: right
+		width: 26px
+		height: 26px
+		opacity: .4
+		cursor: pointer
+		+ui-sprite ("sidebar_hide")
+		+transition
+
+	&:hover, &:focus
+
+		.icon
+			opacity: .9
+
+	+breakpoint($tablet)
+		display: block
+
+#masthead
+	+span(1 of 1 last)
+	position: relative
+	z-index: 100
+	top: 10px
+	right: 0
+	height: 100px
+	margin: 30px 0 -130px
+
+	// ADD OVERLAP TO EACH SIDE OF MASTHEAD
+	margin-left: -10px
+	// padding-right: $grid-padding +20
+
+	background: $cream image-url("home/5pat.svg")
+	border-bottom: 2px solid darken($cream, 35%)
+
+
+footer
+	+span(1 of 1 last)
+	height: 80px
+	background: $chocolate
+	color: white

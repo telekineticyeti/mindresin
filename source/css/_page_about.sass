@@ -1,0 +1,52 @@
+body.about
+
+	main
+		background: white
+
+	.butts, .butts2
+		margin-bottom: 20px
+
+	.butts
+		+dbg
+		min-height: 200px
+
+		+at-breakpoint ($tablet)
+			+span-columns (1, 4)
+			+nth-omega (4n)
+
+		+at-breakpoint ($desktop)
+			+span-columns (1, 6)
+			+remove-nth-omega (4n)
+			+nth-omega (6n)
+
+	.butts2
+		+dbg(cyan)
+		min-height: 200px
+		+span-columns (2, 6)
+		+nth-omega (3n)
+
+//////////////////////////////////
+//	Sidebar disabled
+//////////////////////////////////
+
+#page.sidebar-disabled
+
+	.butts
+		+at-breakpoint ($tablet)
+			+span-columns (1, $tablet)
+			+nth-omega (6n)
+
+		+at-breakpoint ($desktop)
+			+span-columns (1, $desktop)
+			+remove-nth-omega (6n)
+			+nth-omega (8n)
+
+	.butts2
+		+at-breakpoint ($tablet)
+			+span-columns (2, $tablet)
+			+nth-omega (3n)
+
+		+at-breakpoint ($desktop)
+			+span-columns (2, $desktop)
+			+remove-nth-omega (3n)
+			+nth-omega (4n)

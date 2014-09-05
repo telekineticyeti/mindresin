@@ -1,0 +1,12 @@
+.boxit
+
+	/ =partial "portfolio_feature_example"
+
+	- data.portfolio.projects.each do |portfolio|
+		article.sample
+			=image_tag "portfolio/"+portfolio.thumbnail
+			.caption
+					=link_to 'feature.html', :class => 'view'
+							object =partial "svg_icon_eye"
+					h3 =portfolio.name
+					p =portfolio.synopsis

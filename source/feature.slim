@@ -1,0 +1,39 @@
+---
+layout: "nolayout"
+---
+coffee:
+	$ ->
+		$(".slides").responsiveSlides
+			speed				: 900,
+			timeout				: 6000,
+			pager				: false,
+			nav					: true,
+			pause				: true,
+			prevText			: '<',
+			nextText			: '>',
+			navContainer		: '.showcase nav'
+			namespace			: 'pofoslider'
+/ nav
+/ 	ul
+/ 		li.previous: a href="/"
+/ 			| Previous 
+/ 			span
+/ 				| [ 3Net A/S ]
+/ 		li.close
+/ 			a href="/" All Projects
+/ 		li.next
+/ 			a href="/"
+/ 				| Next 
+/ 				span
+/ 					| [ Vefsn kommune ]
+.showcase
+	nav
+	ul.slides
+		li =image_tag lorem.image "750x450", :background_color => '666', :text => 'temp1'
+		li =image_tag lorem.image "750x450", :background_color => '000', :text => 'temp2'
+		li =image_tag lorem.image "750x450", :background_color => '333', :text => 'temp3'
+
+.details
+	h3 Project title
+	h4 UI Design & Identity
+	p =lorem.paragraphs 1

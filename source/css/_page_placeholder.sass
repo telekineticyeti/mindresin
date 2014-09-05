@@ -1,0 +1,52 @@
+body.placeholder
+	main
+		background: #E9F0F1
+
+	.hey
+		text-align: center
+		margin-top: 20px
+		color: $orange
+		font-size: 48px
+
+	.soon
+		text-align: center
+		margin-top: 20px
+		color: $teal
+		line-height: 2.8rem
+
+	.meantime
+		color: $offBlack
+		text-align: center
+		font-size: 16px
+		margin-bottom: 50px
+
+		a
+			color: $orange
+			text-decoration: none
+
+ul.tempnav
+	position: relative
+	margin: 0 15px 0 0
+	padding: 0
+	list-style-type: none
+
+	li
+		margin: 6px 0
+
+	a
+		position: relative
+		+transition(400ms)
+		display: block
+		padding: 8px 0
+		text-align: center
+		text-decoration: none
+		text-shadow: 1px 1px 0 rgba(black, .35)
+		color: white
+		background: rgba($orange, .75)
+		border-bottom: 2px solid darken($orange, 15%)
+
+		&:hover, &:focus
+			background: darken($orange, 5%)
+
+		&:active
+			top: 2px

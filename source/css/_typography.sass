@@ -1,0 +1,50 @@
++textSelect(white, $orange)
+
+// Font collections can be @extended from other modules.
+// the % selector is a placeholder selector that does not
+// render in the final CSS, outside of an @extend
+
+$fonts_standard: "Segoe UI", "Myriad Pro", "Liberation Sans", "Helvetica", "Helvetica Neue", Tahoma, Arial, Sans-serif
+
+%fonts_light
+	font-family: "Segoe UI Light", "Myriad Pro Light", "Helvetica Light", "Helvetica Neue Light", Tahoma, Arial, sans-serif
+
+%fonts_semibold
+	font-family: "Montserrat", "Segoe UI Semibold", "Myriad Pro Semibold", "Helvetica Medium", "Helvetica Neue Medium" Tahoma, Arial, sans-serif
+
+%fonts_serif
+	font-family: Georgia, "DejaVu Serif", "Bitstream Vera Serif", "Times New Roman", "Liberation Serif", Times, Serif
+
+
+
+// Example font-face
++font-face("klinik book", font-files("klinik/klinicslabbook-webfont.ttf", truetype, "klinik/klinicslabbook-webfont.woff", woff, "klinik/klinicslabbook-webfont.svg", svg), "klinik/klinicslabbook-webfont.eot")
++font-face("klinik medium", font-files("klinik/klinicslabmedium-webfont.ttf", truetype, "klinik/klinicslabmedium-webfont.woff", woff, "klinik/klinicslabmedium-webfont.svg", svg), "klinik/klinicslabmedium-webfont.eot")
++font-face("klinik light", font-files("klinik/klinicslablight-webfont.ttf", truetype, "klinik/klinicslablight-webfont.woff", woff, "klinik/klinicslablight-webfont.svg", svg), "klinik/klinicslablight-webfont.eot")
+//+font-face("Museo Sans 700", font-files("museo/Museo700-Regular-webfont.ttf", truetype, "museo/Museo700-Regular-webfont.woff", woff, "museo/Museo700-Regular-webfont.svg", svg), "museo/Museo700-Regular-webfont.eot")
++font-face("Nanami Light", font-files("nanami/NanamiLight.ttf", truetype, "nanami/NanamiLight.woff", woff), "nanami/NanamiLight.eot")
++font-face("Nanami Book", font-files("nanami/NanamiBook.ttf", truetype, "nanami/NanamiBook.woff", woff), "nanami/NanamiBook.eot")
++font-face("Nanami Thin", font-files("nanami/NanamiThin.ttf", truetype, "nanami/NanamiThin.woff", woff), "nanami/NanamiThin.eot")
+//NanamiThin
+// 	@if $collection_style == standard
+body, button, input, select, textarea
+	font-family: $fonts_standard
+
+body
+	+font-size(1)
+
+h1
+	+font-size(1.5)
+
+h2
+	+font-size(1.3)
+
+h3
+	+font-size(1.2)
+
+h4
+	+font-size(1.1)
+
+h1, h2, h3, h4, h5, h6
+	font-family: "Montserrat"
+	font-weight: 500

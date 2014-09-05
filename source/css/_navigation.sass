@@ -1,0 +1,52 @@
+#masthead nav
+	+suffix(2 of 12)
+	+last
+	display: table
+	height: 100%
+	
+	ul
+		display: none
+		+listReset
+		height: 100%
+
+		li
+			display: table-cell
+			vertical-align: middle
+			margin-right: 10px
+
+			a
+				+transition
+				display: block
+				+border-radius(6px)
+				
+				margin-right: 10px
+
+				color: $chocolate
+				font-family: "Nanami Light", $fonts_standard
+				letter-spacing: .1em
+
+				text-transform: uppercase
+				text-decoration: none
+				+text-shadow(1 px 1px 0 rgba(white, 0.8) )
+
+				&:hover, &:focus
+					+transition
+					+box-shadow(0 0 22px 2px rgba(black, 0.4) inset)
+					+text-shadow(2px 1px 0 rgba(black, 0.4) )
+					color: $cream
+					background: $teal
+
+			&:last-child a
+				margin: 0
+
+	+breakpoint ($tablet)
+		ul
+			display: table-row
+
+			li a
+				padding: 6px 10px
+
+	+breakpoint ($desktop)
+		ul li a
+			font-size: 18px
+			padding: 10px 15px 6px

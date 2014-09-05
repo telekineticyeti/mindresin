@@ -1,0 +1,187 @@
+//         __             _____________               __        
+//  _____ |__| ____    __| _/\______   \ ____   _____|__| ____  
+///      \|  |/    \  / __ |  |       _// __ \ /  ___/  |/    \ 
+//|  Y Y  \  |   |  \/ /_/ |  |    |   \  ___/ \___ \|  |   |  \
+//|__|_|  /__|___|  /\____ |  |____|_  /\_____>______>__|___|  /
+//      \/        \/      \/         \/          23.01.14(2a)\/ 
+
+//	..
+//	Debug element placement by viewing an outline
+//	..
+
+=dbg ($color :red)
+	outline: 1px dashed $color
+
+
+//	..
+//	Replacing a text element with an image (e.g. h1 logotype)
+//	..
+
+=hideText
+	text-indent: -999em
+
+
+//	..
+// List reset
+//	..
+
+=listReset
+	list-style-type: none
+	margin: 0
+	padding: 0
+
+
+//	..
+//	Text Selection Color
+//	..
+
+=textSelect($color : white, $background : blue)
+	$prefixes: ("-webkit-","-moz-", "-o-", "")
+	@each $prefix in $prefixes
+		::#{$prefix}selection
+			color: $color
+			background: $background
+
+
+//	..
+// Center allignment mixins
+// Requires @import "compass/css3/transform"
+//	..
+
+=center_alignX
+	left: 50%
+	+translateX(-50%)
+
+=center_alignY
+	top: 50%
+	+translateY(-50%)
+
+
+//	..
+// Clearfix extender
+// ..
+
+%clearfix:after
+	display: block
+	visibility: hidden
+	height: 0
+	clear: both
+	font-size: 1
+	content: " "
+
+.clearfix
+	clear: both
+
+//	..
+// Gradient Generators
+//	..
+
+=gradientReflect ($color : red, $tone : "darken", $amount : 10%)
+	$experimental-support-for-svg: true
+	background-color: $color
+	@if $tone == darken
+		+background-image( linear-gradient( $color, $color 49%, darken($color, $amount) 50%, darken($color, ($amount * 2) ) ) )
+	@else if $tone == both
+		+background-image( linear-gradient( lighten($color, ($amount * 2) ), lighten($color, $amount) 49%, darken($color, $amount) 50%, darken($color, ($amount * 2)) ) )
+	@else
+		+background-image( linear-gradient( lighten($color, ($amount * 2) ), lighten($color, $amount) 49%, $color 50%, $color) )
+	
+=gradientSimple($color1 :red, $color2 :blue)
+	$experimental-support-for-svg: true
+	background: $color1
+	+background-image( linear-gradient($color1, $color2) )
+
+
+//	..
+// Change Susy Grid Settings
+// Use this mixin to temporarily change the grid settings
+// Requires @import "susy"
+//	..
+
+=grid-settings($cols: $total-columns, $width: $column-width, $gutter: $gutter-width, $padding: $grid-padding)
+
+	//	..
+	// Store defaults
+	//	..
+	$default-cols		: $total-columns
+	$default-width		: $column-width
+	$default-gutter		: $gutter-width
+	$default-padding	: $grid-padding
+
+	//	..
+	// use the new settings
+	//	..
+	$total-columns		: $cols
+	$column-width		: $width
+	$gutter-width		: $gutter
+	$grid-padding		: $padding
+
+	//	..
+	// apply to contents
+	//	..
+	@content
+
+	//	..
+	// re-instate the defaults
+	//	..
+	$total-columns		: $default-cols
+	$column-width		: $default-width
+	$gutter-width		: $default-gutter
+	$grid-padding		: $default-padding
+
+
+//	..
+// Vertical Rhythm Mixins
+//	..
+
+$unit-default-px: 10px
+
+=font-size ( $size: 1, $line: $size * 1.5 )
+	font-size			: ($size * $unit-default-px)
+	line-height			: ($line * $unit-default-px)
+	font-size			: $size + rem
+	line-height			: $line + rem
+
+=margin-bottom ( $margin: 1.6 )
+	margin-bottom		: ($margin * $unit-default-px) + px
+	margin-bottom		: $margin + rem
+
+@function fix_unit_to_px($val)
+	@if $val == auto
+		@return $val
+
+	@else
+		@if unitless($val)
+			@if $val == 0
+				@return $val
+			@else
+				@return $val * $unit-default-px
+		@else
+			@return $val
+
+@function fix_unit_to_rem($val)
+	@if $val == auto
+		@return $val
+	@else
+		@if unitless($val)
+			@if $val == 0
+				@return $val
+			@else
+				@return $val+rem
+			@else
+				@return $val
+
+
+=px-rem ($prop, $val...)
+	$n: length($val)
+	$i: 1
+	$px-list: ()
+	$rem-list: ()
+
+	@while $i <= $n
+		$px-list: append($px-list, fix_unit_to_px(nth($val, $i)))
+		$rem-list: append($rem-list, fix_unit_to_rem(nth($val, $i)))
+		$i: $i + 1
+	
+	#{$prop}: $px-list
+	#{$prop}: $rem-list

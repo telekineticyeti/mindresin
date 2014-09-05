@@ -1,0 +1,84 @@
+projects:
+  - name            : Kulturhuset Banken
+    slug            : kulturhuset-banken
+    thumbnail       : kulturhuset-banken_thumb.jpg
+    synopsis        : Kulturhuset Banken is Lillehammer kommune's official cultural venue.
+    fulltext        : |
+                      <p>Kulturhuset Banken is Lillehammer kommune's official cultural venue, hosting shows, conferences and receptions.</p>
+    reference       : http://www.kulturhusetbanken.no/
+    type            : [Front-End evelopment, Branding Development]
+    clients         : [Lillehammer kommune, CustomPublish AS]
+    slides          : [kulturhuset-banken_01.jpg, kulturhuset-banken_02.jpg]
+
+  - name            : 3Net
+    slug            : 3net
+    thumbnail       : 3net_thumb.jpg
+    synopsis        : 3Net provides digital television and broadband solutions to much of Norway.
+    fulltext        : |
+                      <p>3Net is a Norweigan company that provides digital television and broadband solutions to Oslo and surrounding areas.</p>
+    reference       : http://www.3net.no/
+    type            : [Front-end Development]
+    clients         : [3Net AS, CustomPublish AS]
+    slides          : [3net_01.jpg, 3net_02.jpg]
+
+  - name            : Women who Lead
+    slug            : women-who-lead
+    thumbnail       : women-who-lead_thumb.jpg
+    synopsis        : Women who Lead is a personal and professional development programme for female leaders.
+    fulltext        : |
+                      <p>Women who Lead is a personal and professional development programme, developed by leadership consultancy expert Natalie Turner.</p>
+                      <p>In addition to developing specialized programs to facilitate these goals, <em>Women who Lead</em> also hosts an annual retreat</p>
+    reference       : http://natalie-turner.net/services/women-who-lead
+    type            : [Branding, Logotype, Web Design, Print Brochure, Newsletter Campaign]
+    clients         : [Natalie Turner, Entheo.com, Women who Lead]
+    slides          : [wwl_01.jpg, wwl_02.jpg, wwl_03.jpg, wwl_04.jpg]
+
+  - name            : Relationship Advice
+    slug            : relationship-advice
+    thumbnail       : relationship-advice_thumb.jpg
+    synopsis        : Professional, personalised advice from expert counsellors for relationship and sexual problems.
+    fulltext        : |
+                      <p>Relationship Advice.pro is a specialist project developed by Robert Page (author of the Lovers Guide) and headed by Vena Ramphal.</p>
+                      <p>The project aims to provide personalised and bespoke consultation to their clients from a team of relationship experts.</p>
+    reference       : http://www.relationshipadvice.pro
+    type            : [Front-end Development, CMS]
+    clients         : [Robert Page, Dr. Vena Ramphal, The Relationship Specialists]
+    slides          : [ra_01.jpg]
+
+  - name            : Jellyfish Networks
+    slug            : jellyfish-networks
+    thumbnail       : jellyfish_thumb.jpg
+    synopsis        : Jellyfish Networks provides hosting solutions for individuals and medium sized businesses.
+    fulltext        : |
+                      <p>Jellyfish Networks is a company that provides hosting plans for individuals and small to medium sized businesses.</p>
+                      <p>mindResin partners with Jellyfish networking to provide customized hosting solutions for it's clients.</p>
+    reference       : http://www.jellyfishnetworks.com
+    type            : [Front-end Development, Branding Development, Logotype]
+    clients         : [Jellyfish Networks LLC]
+    slides          : [jellyfish_01.jpg, jellyfish_02.jpg ]
+
+  - name            : Kommuner
+    slug            : kommuner
+    thumbnail       : kommune_thumb.jpg
+    synopsis        : mindResin has worked with CustomPublish to redesign many kommuner that span Norway.
+    fulltext        : |
+                      <p>Norwegian municipality websites, otherwise known as 'kommuner' present interesting and fun design challenges.</p>
+                      <p>One must adhere to strict accessibility requirements and legacy browser support, while also providing the clean UI and ease of navigation that is expected of a kommuner. It is also important to creatively present the character of a kommune through local landmarks or culture.</p>
+                      <p>mindResin has worked with CustomPublish to redesign many kommuner that span all over Norway.</p>
+    reference       : http://www.custompublish.com/kommuner.158399.no.html
+    type            : [Front-end Development, Branding, CMS, PHP]
+    clients         : [CustomPublish AS]
+    slides          : 
+
+  - name            : The Way of the Body
+    slug            : the-way-of-the-body
+    thumbnail       : twotb_thumb.jpg
+    synopsis        : The Way of the Body is the blog of love philosopher and Author, Dr. Vena Ramphal
+    fulltext        : | 
+                      <p>Dr. Vena Ramphal is a London based love philosopher and Author. Her project 'The Way of The Body' is a creative platform that also aims to unify Vena's social-networking activities.</p>
+                      <p>The Way of the Body also serves as an e-commerce platform for delivery of digital content such as periodicals and videos.</p>
+    reference       : http://thewayofthebody.co.uk
+    type            : [Front-end Development, Branding, CMS, PHP]
+    clients         : [Dr. Vena Ramphal]
+    slides          : [twotb_01.jpg, twotb_02.jpg, twotb_03.jpg]
+

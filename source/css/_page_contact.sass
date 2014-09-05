@@ -1,0 +1,251 @@
+body.contact
+
+	main
+		position: relative
+		z-index: 1
+		background: #E9F0F1 image-url('contact/tile_canvas.jpg')
+
+	.envelope
+		position: relative
+
+		&:before, &:after
+			content: ""
+			position: absolute
+			z-index: 1
+			top: -30px
+			background: #E9F0F1 image-url('contact/tile_canvas.jpg')
+			width: 60px
+			height: 60px
+			border-radius: 50%
+
+		&:before
+			left: -30px
+
+		&:after
+			right: -30px
+
+	.envelope_inner
+		position: relative
+		background: $offWhite
+		+box-shadow( 0 0 5px 3px rgba(black, .1) inset )
+
+		&:before, &:after
+			content: ""
+			position: absolute
+			bottom: -30px
+			background: #E9F0F1 image-url('contact/tile_canvas.jpg')
+			width: 60px
+			height: 60px
+			border-radius: 50%
+
+		&:before
+			left: -30px
+
+		&:after
+			right: -30px
+
+	.column
+		margin-bottom: 30px
+
+	.postage
+		position: absolute
+		z-index: 2
+		top: -10px
+		right: -10px
+		width: 200px
+		height: 120px
+		background: transparent image-url('contact/stamps.png') no-repeat
+			size: 100% auto
+
+	+at-breakpoint ($tablet)
+		.column
+			position: relative
+			width: 48%
+			float: right
+
+			&:nth-of-type(2n)
+				float: left
+
+		.postage
+			position: relative
+			top: 0
+			right: 0
+			margin: -20px -10px 0 0
+			width: 100%
+			height: 171px
+
+	form.airmail
+		border: 19px solid $offWhite
+		border-image: image-url('contact/border_airmail.png') 19 19 19 19 repeat
+		margin: 10px 2px
+		padding: 30px 15px
+
+		input, textarea
+			border: 0
+			padding: 0
+			margin: 0
+			background: darken(white, 1%)
+			text-indent: 10px
+
+			&:focus
+				background: white
+				outline: none
+				+box-shadow( 0 0 6px 0 rgba(black, .1) inset )
+
+		input[type="text"]
+			padding: 5px 0
+			width: 100%
+			margin: 0 0 10px
+
+			&:first-of-type
+				margin-top: 30px
+
+		textarea
+			position: relative
+			z-index: 3
+			resize: both
+			width: 100%
+			padding: 5px 0
+
+		label
+			display: none
+
+	h2.hello
+		color: $orange
+		font-family: "klinik medium", $fonts_standard
+		font-size: 30px
+		padding: 0
+		margin: 0
+
+	p
+		color: $offBlack
+		font-size: 14px
+
+	.status
+		height: 30px
+		margin-bottom: -30px
+		text-align: center
+		font-size: 12px
+		color: darken(red, 15%)
+
+
+	.sidebar-disabled
+		.postage
+			height: 230px
+
+	button.send
+		position: relative
+		width: 100%
+		margin: 0
+		padding: 10px 0
+		border: 0
+		text-transform: uppercase
+		font: 22px "nanami book", $fonts_standard
+		letter-spacing: 2px
+		outline: 0
+		pointer-events: none
+		+border-radius(4px)
+
+		background: #E3E3E3
+		color: darken(#E3E3E3, 10%)
+		border-bottom: 3px solid darken(#E3E3E3, 5%)
+
+		&.active
+			text-shadow: 1px 1px 0 rgba(black, .5)
+			border-bottom: 3px solid $orange
+			background: $nanoPeach
+			color: $offWhite
+			pointer-events: all
+
+			&:hover, &:focus
+				background: lighten($orange, 5%)
+				border-bottom-color: darken($orange, 5%)
+
+			&:active
+				border-bottom: 0
+				margin-top: 3px
+				background: $teal
+				border-bottom-color: darken($teal, 15%)
+
+.folds
+	position: relative
+
+	> div
+		position: relative
+		+bleed(30px)
+
+	.over
+		z-index: 1
+		height: 30px
+		background: #E9F0F1 image-url('contact/tile_canvas.jpg')
+		+border-radius(10px)
+		+box-shadow(0 5px 5px 0 rgba(black, .3) )
+
+	.under
+		margin-top: -10px
+		height: 25px
+		+gradientSimple(#C2C2C2, darken(#C2C2C2, 5%) )
+
+		&:before, &:after
+			content: ""
+			position: absolute
+			bottom: 0px
+			width: 0px
+			height: 0px
+			border-bottom: 15px solid transparent
+			border-top: 15px solid transparent
+
+		&:before
+			left: 0
+			border-left: 15px solid #E9F0F1
+
+		&:after
+			right: 0
+			border-right: 15px solid #E9F0F1
+
+	.flap
+		background: image-url('contact/tile_3dcubes.jpg')
+		overflow: hidden
+
+		.inner
+			position: relative
+			height: 120px
+			+bleed($gutter-width)
+
+		&:before, &:after
+			content: ""
+			position: absolute
+			top: -2px
+			height: 90px
+			width: 70%
+			+transform-origin(100% 100%)
+			background: #E9F0F1 image-url('contact/tile_canvas.jpg')
+			+transform( perspective(400px) rotateX(-25deg) )
+		
+		&:before
+			+box-shadow( -5px 5px 5px 0 rgba(black, .2) )
+			left: 14px
+			border-radius: 0 0 0 20px
+
+		&:after
+			+box-shadow( 5px 5px 5px 0 rgba(black, .2) )
+			right: 14px
+			border-radius: 0 0 20px 0
+
+		p
+			// opacity: .7
+			margin-top: 30px
+			font-size: 12px
+			position: relative
+			z-index: 3
+			text-align: center
+			color: #999
+			line-height: 18px
+
+		a
+			font-size: 18px
+			color: $nanoOrange
+			text-decoration: none
+
+			&:hover, &:focus
+				color: $nanoTeal

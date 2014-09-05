@@ -1,0 +1,44 @@
+doctype html
+html lang="en"
+	head
+		title =current_page.data.title 
+		meta charset="utf-8"
+		meta http-equiv="cleartype" content="on"
+		meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+		meta name="viewport" content="width=device-width, initial-scale=1"
+		meta name="keywords" content="#{site_keywords}"
+		meta name="author" content="#{site_author}"
+		meta name="description" content="#{site_description}"
+		/ = stylesheet_link_tag "style", "http://fonts.googleapis.com/css?family=Montserrat:400,700"
+		= stylesheet_link_tag "style"
+		= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js", "main"
+
+	body class="#{page_classes}"
+		#page
+			header#masthead
+				h1.logo: a href="/": object =partial "svg_mindresinlogo"
+				nav: ul
+					li =link_to 'About', 'about.html'
+					li =link_to 'Work', 'portfolio.html'
+					li =link_to 'Blog', 'blog.html'
+					li =link_to 'Contact', 'contact.html'
+
+			main id="main"
+				.headerPush
+				= yield
+
+			#sidebar
+				.headerPush
+				=partial "sidebar"
+
+			footer
+				p Copyright &copy;2013 #{site_title}
+
+		-if build?
+			javascript:
+				window.jQuery || document.write('<script src="assets/js/jquery-1.9.1.min.js"><\/script>')
+				
+				var _gaq=[['_setAccount','#{site_analyticsID}'],['_trackPageview']];
+				(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+				g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+				s.parentNode.insertBefore(g,s)}(document,'script'));

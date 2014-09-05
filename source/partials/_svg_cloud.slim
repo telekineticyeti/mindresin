@@ -1,0 +1,16 @@
+svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="380px" height="175px"
+	defs
+		filter#dropshadow height="130%"
+			feGaussianBlur in="SourceAlpha" stdDeviation="3"/
+			feOffset dx="2" dy="2" result="offsetblur"/
+			feComponentTransfer
+				feFuncA type="linear" slope="0.2"/
+			feMerge
+				feMergeNode/
+				feMergeNode in="SourceGraphic"/
+
+	linearGradient#linearfill gradientUnits="userSpaceOnUse" x1="182" y1="5.5" x2="182" y2="159.5"
+		stop#cloudStopOne offset="0"/
+		stop#cloudStopTwo offset="1"/
+
+	path#cloud fill="url(#linearfill)" filter="url(#dropshadow)" d="M334,159.5H30c-16.569,0-30-13.432-30-30s13.431-30,30-30h13.406C40.603,94.465,39,88.671,39,82.5c0-19.33,15.67-35,35-35c2.532,0,4.999,0.275,7.378,0.786C86.935,23.792,108.824,5.5,135,5.5c23.632,0,43.777,14.907,51.56,35.829c6.11-3.699,13.276-5.829,20.94-5.829c14.076,0,26.47,7.184,33.728,18.082c9.08-9.3,21.748-15.082,35.772-15.082c27.614,0,50,22.386,50,50c0,3.781-0.434,7.459-1.229,11H334c16.568,0,30,13.432,30,30S350.568,159.5,334,159.5z"
