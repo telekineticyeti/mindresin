@@ -15,11 +15,11 @@
 			margin-right: 10px
 
 			a
-				+transition
 				display: block
+				margin-right: 10px
+				+transition
 				+border-radius(6px)
 				
-				margin-right: 10px
 
 				color: $chocolate
 				font-family: "Nanami Light", $fonts_standard
@@ -39,14 +39,18 @@
 			&:last-child a
 				margin: 0
 
-	+breakpoint ($tablet)
+	+breakpoint($tablet)
 		ul
 			display: table-row
+		li a
+			padding: 6px 10px
 
-			li a
-				padding: 6px 10px
-
-	+breakpoint ($desktop)
+	+breakpoint($desktop)
 		ul li a
 			font-size: 18px
 			padding: 10px 15px 6px
+
+#page.sidebar-disabled
+
+	#masthead nav
+		+suffix(0 of 0)

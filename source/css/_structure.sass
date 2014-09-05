@@ -26,6 +26,7 @@ main
 
 	+breakpoint($tablet)
 		+span(7 of 10)
+		+bleed-x(0 1em)
 
 	+breakpoint($desktop)
 		+span(9 of 12)
@@ -38,8 +39,8 @@ main
 	top: 0
 	right: 0
 	bottom: 0
-	background: $peach image-url("sidebar_background.png")
-	+single-box-shadow ( -3px, -10px, 8px, 0, rgba(0,0,0,.1) )
+	background: $peach
+	+single-box-shadow ( -3px, -10px, 8px, 0, rgba(0,0,0, .1) )
 	+transition(100ms)
 
 	+breakpoint($tablet)
@@ -48,32 +49,26 @@ main
 	+breakpoint($desktop)
 		+span(3 of 12 last)
 
+#masthead
+	+span(1 of 1 last)
+	position: relative
+	z-index: 100
+	top: 10px
+	right: 0
+	height: 100px
+	margin: 30px -5px -130px 0
 
-//////////////////////////////////
-//	Sidebar disabled
-//////////////////////////////////
+	// ADD OVERLAP TO EACH SIDE OF MASTHEAD
+	padding: 0 5px
 
-#page.sidebar-enabled #sidebar
-	+breakpoint ($tablet)
-		display: block
+	background: $cream image-url("home/5pat.svg")
+	border-bottom: 2px solid darken($cream, 35%)
 
-
-#page.sidebar-disabled
-	main
-		+breakpoint ($tablet)
-			+span(10 of 10)
-
-	#sidebar
-		overflow: hidden
-		width: 0
-		padding: 0
-
-	.toggleSidebar
-		.icon
-			+ui-sprite ("sidebar_show")
-
-	#masthead:before
-		width: 0
+footer
+	+span(1 of 1 last)
+	height: 80px
+	background: $chocolate
+	color: white
 
 .toggleSidebar
 	position: absolute
@@ -94,32 +89,46 @@ main
 		+transition
 
 	&:hover, &:focus
-
 		.icon
 			opacity: .9
 
 	+breakpoint($tablet)
 		display: block
 
-#masthead
-	+span(1 of 1 last)
-	position: relative
-	z-index: 100
-	top: 10px
-	right: 0
-	height: 100px
-	margin: 30px 0 -130px
 
-	// ADD OVERLAP TO EACH SIDE OF MASTHEAD
-	margin-left: -10px
-	// padding-right: $grid-padding +20
+//////////////////////////////////
+//	Sidebar ENABLED
+//////////////////////////////////
 
-	background: $cream image-url("home/5pat.svg")
-	border-bottom: 2px solid darken($cream, 35%)
+#page.sidebar-enabled
+
+	+breakpoint ($tablet)
+		#sidebar
+			display: block
+
+		.content
+			padding: 0 10px 0 30px
 
 
-footer
-	+span(1 of 1 last)
-	height: 80px
-	background: $chocolate
-	color: white
+//////////////////////////////////
+//	Sidebar disabled
+//////////////////////////////////
+
+#page.sidebar-disabled
+
+	+breakpoint ($tablet)
+		main
+			+span(full)
+			// Cancel right side padding from bleed-x
+			padding-right: 0
+
+		.content
+			padding: 0 30px
+
+	#sidebar
+		overflow: hidden
+		width: 0
+		padding: 0
+
+	.toggleSidebar .icon
+		+ui-sprite ("sidebar_show")

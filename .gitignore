@@ -26,7 +26,8 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must ends with two \r.
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -35,13 +36,7 @@ Icon
 .Spotlight-V100
 .Trashes
 
-source/fonts/klinik/klinicslabmedium-webfont.eot
-source/fonts/klinik/klinicslabmedium-webfont.svg
-source/fonts/klinik/klinicslabmedium-webfont.ttf
-source/fonts/klinik/klinicslabmedium-webfont.woff
-source/fonts/nanami/NanamiLight.eot
-source/fonts/nanami/NanamiLight.ttf
-source/fonts/nanami/NanamiLight.woff
-source/images/ui-s07ea90d6ec.png
-source/js/contact.coffee
+source/fonts/
+.legacy/
+build/
 Gemfile.lock
