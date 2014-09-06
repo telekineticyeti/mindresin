@@ -40,3 +40,5 @@ source/fonts/
 .legacy/
 build/
 Gemfile.lock
+source/images/ui-s07ea90d6ec.png
+source/epaper.slim
