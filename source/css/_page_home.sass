@@ -8,32 +8,27 @@ body.index
 		+breakpoint ($tablet)
 			background-position: left bottom
 
-		.gentleman
+		img.gentleman
 			+transition
+			display: block
 			position: relative
-			min-height: 350px
-			background:
-				position: -30px top
-				size: 100% auto
-				image: image-url("home/gentleman.png")
-				repeat: no-repeat
+			max-width: 100%
+			height: auto
+			margin: 10px 20px 20px -25px
 
 			+breakpoint ($tablet)
-				background-position: left top
 				position: absolute
-				display: block
-				top: 140px
-				right: 50px
-				width: 430px
-				height: 380px
+				margin: 0
+				top: 157px
+				right: 20px
+				max-width: 430px
 
 			+breakpoint ($desktop)
-				width: 507px
-				height: 445px
-				right: 50px
+				max-width: 480px
+				top: 155px
 
-				&:hover, &:focus
-					// top: 190px
+			&:hover, &:focus
+				padding-top: 10px
 
 		h2
 			position: relative
