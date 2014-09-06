@@ -24,6 +24,7 @@ main
 	position: relative
 	@extend %headerpush
 	@extend %clearfix
+	+span(1 of 1 first)
 
 	+breakpoint($tablet)
 		+span(7 of 10)
@@ -33,19 +34,29 @@ main
 		+span(9 of 12)
 
 #sidebar
-	@extend %headerpush
-	position: absolute
 	z-index: 1
-	display: none
-	top: 0
-	right: 0
-	bottom: 0
 	background: $peach
+	padding: 20px 0
+	+span(1 of 1 last)
 	+single-box-shadow ( -3px, -10px, 8px, 0, rgba(0,0,0, .1) )
 	+transition(100ms)
 
 	+breakpoint($tablet)
+		position: absolute
+		padding: 0
+		top: 0
+		right: 0
+		bottom: 0
 		+span(3 of 10 last)
+
+		// May not use @extend %headerpush inside @media query.
+		// Find a way to make this DRYer.
+		&:before
+			display: block
+			visibility: hidden
+			height: 180px
+			font-size: 1
+			content: " "
 
 	+breakpoint($desktop)
 		+span(3 of 12 last)
@@ -73,10 +84,9 @@ footer
 
 .toggleSidebar
 	position: absolute
-	display: none
 	z-index: 100
-	top: 7px
-	right: 30px
+	bottom: 10px
+	right: 10px
 	height: 26px
 	background: rgba(white, .25)
 
@@ -94,7 +104,7 @@ footer
 			opacity: .9
 
 	+breakpoint($tablet)
-		display: block
+		top: 7px
 
 
 //////////////////////////////////
@@ -129,6 +139,7 @@ footer
 	#sidebar
 		overflow: hidden
 		width: 0
+		height: 0
 		padding: 0
 
 	.toggleSidebar .icon
