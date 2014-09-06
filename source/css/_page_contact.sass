@@ -173,7 +173,9 @@ body.contact
 
 	> div
 		position: relative
-		// +bleed(30px)
+
+		+breakpoint ($tablet)
+			+bleed-x(30px)
 
 	.over
 		z-index: 1
@@ -207,11 +209,12 @@ body.contact
 	.flap
 		background: image-url('contact/tile_3dcubes.jpg')
 		overflow: hidden
+		+breakpoint ($tablet)
+			+bleed-x(30px)
 
 		.inner
 			position: relative
-			height: 120px
-			// +bleed($gutter-width)
+			height: 80px
 
 		&:before, &:after
 			content: ""
