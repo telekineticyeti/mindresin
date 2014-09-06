@@ -12,43 +12,59 @@ $(window).load ->
 	# |_ -| | . | -_| . | .'|  _|
 	# |___|_|___|___|___|__,|_|  
 	#
-
 	page = $('#page')
+
+
+	#	Add sidebar toggle button to the dom, and delegate any events
+	#	applied to it to our custom functions.
+	#
 	page
 		.append('<div class="toggleSidebar"><span class="icon">')
 		.delegate('.toggleSidebar', 'click', -> 
 			toggleSidebar()
-			pofoAssign()
+			portfolioDesignateItems()
 	)
 
+
+	#	Use jquery.cookie plugin to keep the sidebar toggle state between sessions.
+	#	Portfolio page has sidebar disabled by default
+	#
 	if !$.cookie("sidebar") and $('body').hasClass('portfolio') then page.addClass('sidebar-disabled')
 	else if !$.cookie("sidebar") or $.cookie("sidebar") == "enabled" then page.addClass('sidebar-enabled')
 	else if $.cookie("sidebar") == "disabled" then page.addClass('sidebar-disabled')
 
-	#	Change the sidebar toggle's graphic depending on it's state
-	#	.....
-
+	#	Function controls behaviour of sidebar, and reacts to different criteria
+	#	such as media queries and overlays.
+	#
 	toggleSidebar = (exceptions) ->
 
+		#	IF current view is the portfolio page, and there is an overlay active
+		#	THEN destroy overlay, and rebuild it
+		#
 		if $('body.portfolio main').hasClass('featureActive')
 			resetTo = $('article.selected').attr('data-index')
 			destroyFeature(true)
 			setTimeout ->
-				pofoAssign()
+				portfolioDesignateItems()
 				$("article[data-index='"+resetTo+"'] a.view").click()
 			, 800
 
+		#	IF sidebar is currently disabled
+		#	THEN enable sidebar and set cookie.
+		#
 		if page.hasClass('sidebar-disabled')
 			page
 				.removeClass('sidebar-disabled')
 				.addClass('sidebar-enabled')
 			$.cookie("sidebar", "enabled")
 
+		#	IF sidebar is currently enabled
+		#	THEN disable sidebar and set cookie.
+		#
 		else if page.hasClass('sidebar-enabled')
 			page
 				.removeClass('sidebar-enabled')
 				.addClass('sidebar-disabled')
-			# if $('body').hasClass('portfolio') then return false
 			$.cookie("sidebar", "disabled")
 
 
@@ -59,62 +75,58 @@ $(window).load ->
 	# |_|       
 	#
 
-	items = $("body.portfolio main .page-content").children('article')
+	#	Create an object for all portfolio items
+	portfolioItems = $("body.portfolio main").find('article.portfolio-item')
+
+	#	Animation time 
 	fadetime = 600
 
+	portfolioItems.bind
 
-	#	Apply '.fade' class to all thumbnails (except current) when mouseover detected
-	#	.....
-
-	items.bind
+		#	Apply .fade to all portfolio items (except current) 
+		#	When mouseover event detected
+		#
 		mouseenter: ->
-			items.not(this).each ->
+			portfolioItems.not(this).each ->
 				if $(this).hasClass('selected')
 					return false
 				$(this).addClass('fade')
 
 			if $('main').hasClass('featureActive') and $(this).hasClass('fade')
 				$(this).removeClass('fade')
-				# return false
 
+		#	Remove .fade on mouse leave
+		#
 		mouseleave: -> 
-			items.not(this).each ->
+			portfolioItems.not(this).each ->
 				if $('main').hasClass('featureActive') 
 					return false
 				else
 					$(this).removeClass('fade')
 
-			# if $('main').hasClass('featureActive') and !$(this).hasClass('selected')
-			# 	$(this).addClass('fade')
 
-
-	#	Get each sample item from the portfolio and assign it a row number using HTML5 'data' attribute. 
-	#	Re-arrange row assignments if layout width is adjusted or if the sidebar is toggled.
-	#	.....
-
-	pofoAssign = ->
+	#	Designate each portfolio item with a data-index-row attribute.
+	#	Item's row is determined by it's 'top' position. If the position is not the same as
+	#	the previous item, increment the row integer by 1 and move on.
+	#
+	portfolioDesignateItems = ->
 		row = 1
-		index = 1
 
-		items.each ->
-			$(this).attr( "data-index", index )
-			index++
-
+		portfolioItems.each ->
 			if $(this).prev().length > 0
 				if $(this).position().top != $(this).prev().position().top
 					row++
-				$(this).attr( "data-row", row )
+			$(this).attr( "data-row", row )
 
-	
-	pofoAssign()
-	$(window).resize(pofoAssign)
+	#	Initiate item designation when page loads, and initiate again if the viewport changes.
+	#
+	portfolioDesignateItems()
+	$(window).resize(portfolioDesignateItems)
 
-	#	Capture portfolio view link click. Mouseup used to circumvent CSS3 animations interferring with .click()
+	#	Handle events on portfolio item's view  button.
 	#	Create the feature frame below the selected sample's row. 
-	#	.....
-
-
-	$("body.portfolio article a.view").click (e) ->
+	#
+	$("body.portfolio article.portfolio-item a.view").click (e) ->
 		if $(this).closest("article").hasClass('selected')
 			destroyFeature()
 			# return false
@@ -124,26 +136,36 @@ $(window).load ->
 			designateFeature( target )
 		e.preventDefault()
 
-	# ... Destroys Frame from DOM and removes any 'selected' classes
-
+	#	Destroys Frame and removes any 'selected' classes
+	#
 	destroyFeature = (instant) ->
-
 		if instant
-			a = 0
+			animtime = 0
 		else
-			a = 600
+			animtime = 600
 
+		#	Remove selected class
+		#
 		$("article").removeClass('selected')
-		$("div.feature").slideUp(a, ->
+
+		#	Animate frame height to 0 before destroying.
+		#
+		$("div.feature").slideUp(animtime, ->
 			$(this).remove()
 			$("main").removeClass('featureActive')
 		)
-		items.removeClass('fade')
+
+		#	Remove any lingering fade effects on remaining items
+		#
+		portfolioItems.removeClass('fade')
 		
 
-	# ... Creates the feature frame from inputted target row
-
+	#	Creates the feature frame at target row
+	#
 	createFeature = (target) ->
+
+		#	Find last element of (target) row, and inset following html after it
+		#
 		$("article[data-row='"+target.row+"']").last().after("
 			<div data-homerow='"+target.row+"' class='feature'>
 				<div class='indicator'></div>
@@ -152,20 +174,32 @@ $(window).load ->
 						<path d='M10.061,9L18,16.94l-1.057,1.058l-7.941-7.939L1.059,18L0,16.94L7.942,9L0,1.059L1.059,0l7.943,7.941l7.941-7.939L18,1.061 L10.061,9z'/>
 					</svg>
 				</object>
-				<div class='content'>
+				<div class='feature-content'>
 		")
-		$("div.feature").hide().slideDown(600, ->
-			$("div.feature .content").load(target.href).hide().fadeIn(fadetime)
+
+		#	Hide the created feature frame, then slide into view.
+		#	Once the target page has been loaded into frame.
+		#
+		$(".feature").hide()
+
+		$(".feature .feature-content").load(target.href, ->
+			$(this).fadeTo(0, 0)
+			$(".feature").slideDown(700, ->
+				$(".feature .feature-content").fadeTo(700, 1)
+			)
 		)
+
+		#	Set the page's scroll position to the top of the newly created frame
+		#
 		setTimeout ->
 			$(this).scrollTop( $(this)[0].scrollHeight )
 		, 5000
 
 
-	# ... Method checks if a feature frame exists and where it is assigned.
-	# ... Moves focus of feature if it exists already.
-	# ... Handles designation of selected classes and indicator adjustments.
-
+	#	Check if a feature frame exists, and where it is assigned.
+	#	Move location of feature frame if it exists already.
+	#	Handles designation of selected classes and indicator adjustments.
+	#
 	designateFeature = (target) ->
 		homerow = parseInt( $("div.feature").attr('data-homerow') )
 		newitem = $("article[data-index='"+target.index+"']")
@@ -180,7 +214,6 @@ $(window).load ->
 			newitem.addClass('selected').removeClass('fade')
 
 		else if homerow is target.row
-
 			$("article").removeClass('selected')
 
 			$("div.feature .content").fadeOut(fadetime, ->
@@ -192,10 +225,11 @@ $(window).load ->
 			)
 
 		newitem.addClass('selected').removeClass('fade')
-		items.not(newitem).addClass('fade')
+		portfolioItems.not(newitem).addClass('fade')
 		$("main").addClass('featureActive')
 		$(".indicator").css( left : Math.ceil(position.left + newitem.width()/2 - $(".indicator").outerWidth()/2 ) )
 
+	#	Delegate the 'X' on feature frame as a close frame button
 	$("#main").delegate('.closeFeature', 'click', -> 
 		destroyFeature()
 		console.log('butts')
