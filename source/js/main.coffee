@@ -216,7 +216,7 @@ $(window).load ->
 		else if homerow is target.row
 			$("article").removeClass('selected')
 
-			$("div.feature .content").fadeOut(fadetime, ->
+			$("div.feature .feature-content").fadeOut(fadetime, ->
 				$(this)
 					.empty()
 					.load(target.href)
