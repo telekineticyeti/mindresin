@@ -25,7 +25,8 @@ html lang="en"
 					li =link_to 'Contact', 'contact.html'
 
 			main id="main"
-				= yield
+				.page-content
+					= yield
 
 			#sidebar
 				=partial "sidebar"

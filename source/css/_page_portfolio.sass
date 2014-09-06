@@ -14,7 +14,10 @@ body.portfolio
 		+transition(opacity 400ms 200ms ease-in-out)
 
 		+breakpoint ($tablet)
-			+gallery(5 of 10)
+			+span(5 of 10)
+
+			&:nth-of-type(2n)
+				+last
 
 		img
 			position: relative
@@ -146,12 +149,14 @@ body.portfolio
 		position: relative
 		z-index: 40
 		display: block
-		float: left
-		width: 100%
-		padding: 0 30px
-		margin: 0 -30px 30px
+		+span(1 of 1 last)
 		background: $ocean
-		
+		margin-bottom: 30px
+		// margin-top: 30px
+
+		+breakpoint($tablet)
+			+bleed-x(30px)
+
 		.indicator
 			position: absolute
 			top: -20px
@@ -175,10 +180,10 @@ body.portfolio
 
 			svg
 				position: absolute
-				top: 20px
-				right: 20px
-				width: 24px
-				height: 24px
+				top: 15px
+				right: 15px
+				width: 20px
+				height: 20px
 
 			path
 				fill: $awYissStone
@@ -188,15 +193,12 @@ body.portfolio
 				path
 					fill: $orange
 
-		.content
+		.feature-content
 			position: relative
 			width: 100%
 			min-height: 410px
 			overflow: hidden
-			padding-left: 30px
-			padding-right: 30px
-			margin-left: -30px
-			margin-left: -30px
+			+bleed-x(30px)
 
 			&:before, &:after  // Tapered Shadows
 				position: absolute
@@ -220,16 +222,17 @@ body.portfolio
 		.showcase
 			position: relative
 			@extend %clearfix
-			margin-top: 50px
-			margin-bottom: 30px
 			overflow: hidden
+
+			margin: 50px 10px 30px
+
+			+breakpoint($tablet)
+				margin: 50px 0 30px
 
 			// Fixes Firefox Bug: Opacity animations showing outside overflow
 			// http://jbkflex.wordpress.com/2013/04/04/css3-transformations-showing-content-outside-overflowhidden-region-in-firefoxandroid/
 			background: $nanoTeal
 			opacity: .99
-
-			// ul.slides
 
 			nav
 				position: absolute
@@ -281,8 +284,11 @@ body.portfolio
 						opacity: 1
 
 		.details
-			margin: 30px 30px 30px 0
+			margin: 30px 10px
 			color: $nanoWhite
+
+			+breakpoint($tablet)
+				margin: 30px 30px 30px 0
 
 			h3
 				margin: 0
@@ -293,44 +299,32 @@ body.portfolio
 				margin: 5px 0
 				color: $nanoBlush
 
+	///////////////////////////////
+	// Sidebar Disabled
+	///////////////////////////////
+
 	.sidebar-disabled
+
 		.feature
 			+breakpoint ($tablet)
 				.showcase
-					// +span-columns (7, $tablet)
-
-				.details				
-					// +span-columns (3 omega, $tablet)
-
-			+breakpoint ($desktop)
-				.showcase
 					margin-top: 30px
-					// +span-columns (8, $desktop)
+					+span(7 of 10)
 
 				.details				
-					// +span-columns (4 omega, $desktop)
+					+span(3 of 10 last)
+					margin-top: 24px
 	
 		article.sample
 
 			+breakpoint ($tablet)
-				+gallery(5 of 10)
-
-			// 	&:nth-of-type(2n)
-			// 		+last
 
 			+breakpoint ($desktop)
-				+gallery(4 of 12)
+				+span(4 of 12)
 
-				// &:nth-of-type(3n)
-				// 	+span
-		// 	+breakpoint ($tablet)
-		// 		+grid-settings(10, 54px, 30px, 0)
-		// 			+span-columns(5, 10)
-		// 			+nth-omega (2n, of-type)
+				&:nth-of-type(2n)
+					// Removes the 'omega' setting on nth-of-type(2n) from previous media queries
+					+span(4 of 12)
 
-		// 	+breakpoint ($desktop)
-		// 		+grid-settings(12, 54px, 30px, 0)
-		// 			+span-columns(4, 12)
-		// 			+remove-nth-omega (2n, of-type, $desktop)
-		// 			+remove-nth-omega (3n, of-type, $desktop)
-		// 			+nth-omega (3n, of-type)
+				&:nth-of-type(3n)
+					+last

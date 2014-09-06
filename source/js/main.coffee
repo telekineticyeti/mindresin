@@ -59,7 +59,7 @@ $(window).load ->
 	# |_|       
 	#
 
-	items = $("body.portfolio main").children('article')
+	items = $("body.portfolio main .page-content").children('article')
 	fadetime = 600
 
 
@@ -77,7 +77,7 @@ $(window).load ->
 				$(this).removeClass('fade')
 				# return false
 
-		mouseleave: ->
+		mouseleave: -> 
 			items.not(this).each ->
 				if $('main').hasClass('featureActive') 
 					return false
@@ -108,7 +108,6 @@ $(window).load ->
 	
 	pofoAssign()
 	$(window).resize(pofoAssign)
-
 
 	#	Capture portfolio view link click. Mouseup used to circumvent CSS3 animations interferring with .click()
 	#	Create the feature frame below the selected sample's row. 
