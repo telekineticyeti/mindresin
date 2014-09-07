@@ -1,10 +1,6 @@
 // = require '_jquery.cookie.min'
 // = require '_responsiveslides.min'
 
-# Debug, Remove in build
-log = (par) ->
-	console.log(par)
-
 $(window).load ->
 
 	#      _   _     _           
@@ -232,5 +228,4 @@ $(window).load ->
 	#	Delegate the 'X' on feature frame as a close frame button
 	$("#main").delegate('.closeFeature', 'click', -> 
 		destroyFeature()
-		console.log('butts')
 	)

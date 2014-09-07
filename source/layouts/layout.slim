@@ -17,7 +17,9 @@ html lang="en"
 	body class="#{page_classes}"
 		#page
 			header#masthead
-				h1.logo: a href="/": object =partial "svg_mindresinlogo"
+				h1.logo: a href="/"
+					=image_tag "logo-mindresin.svg"
+				/ h1.logo: a href="/": object =partial "svg_mindresinlogo"
 				nav: ul
 					li =link_to 'About', 'about.html'
 					li =link_to 'Work', 'portfolio.html'
