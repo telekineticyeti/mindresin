@@ -37,8 +37,6 @@ aside.personal
 				opacity: 1
 				+translateY(-5px)
 
-
-
 aside.twitter
 	$twitter-bubble-colour: #18506B
 	position: relative
@@ -76,11 +74,15 @@ aside.twitter
 		float: left
 
 		img
+			+transition(300ms)
 			display: block
 			+border-radius(50%)
 			width: 100%
 			height: auto
 			border-bottom: 1px solid rgba(black, .35)
+
+		&:hover img
+			+translateY(-5px)
 
 	.when
 		margin: 0 10px 0 0
