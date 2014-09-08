@@ -1,11 +1,87 @@
 / = javascript_include_tag 'contact'
+
+coffee:
+	$(document).ready ->
+		origin_hello		= $('h2.hello').text()
+		origin_feedback		= $('p.feedback').text()
+		origin_send			= $('#submit').text()
+		origin_colour 		= $('.airmail input').css('background-color')
+		email_reg			= /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
+
+		$(".airmail #submit").click ->
+
+			# If the form has been successfully submitted before
+			# initiate a reset to a fresh form
+			if $(this).hasClass("success")
+				# Remove user inputted text from fields
+				$('.airmail input, .airmail textarea').val('')
+				# Remove 'success' UI elements and return text values to original values
+				$('.paid').animate
+					"width" : "0%"
+					"opacity" : "0"
+				, 600, ->
+					$('h2.hello').text(origin_hello)
+					$('p.feedback').text(origin_feedback)
+				# Return the submit button to its original state
+				$(this).removeClass("success").text(origin_send)
+				return
+
+			proceed = true
+
+			# Simple client-side validation
+			$(".airmail input[required=true], .airmail textarea[required=true]").each ->
+
+				# If a required field is empty, colour it red and set an error message
+				if !$.trim( $(this).val() )
+					$(this).css 'background', '#fcb3b2'
+					$(".status").text "Please fill in the missing field(s)"
+					proceed = false
+
+				# Does the email field look like a real email address?
+				if $(this).attr("name") is "email" and !email_reg.test $.trim $(this).val() 
+					$(this).css 'background', '#fcb3b2'
+					$(".status").text "invalid email address"
+					proceed = false
+
+			# If everything checks out, make the ajax call and try to send the message.
+			if proceed
+
+				post_data =
+					'user_name'     : $('input[name=name]').val()
+					'user_email'    : $('input[name=email]').val()
+					'message'       : $('textarea[name=enquiry]').val()
+
+				$.post 'http://mindres.in/assets/lib/sendform', post_data, (response) ->
+					output = response.text
+
+					# PHP couldn't mail, let the user know there's a problem
+					if response.type is 'error'
+						$('h2.hello').text "Uh-oh!"
+						$('p.feedback').text "Something apparently went... really wrong. You can try again later or email me directly at the address below. Sorry!"
+						$(".status").text output
+
+					# PHP successfully sent message, celebrate with some animates
+					else
+						$('.paid').animate
+							"width"		: "100%"
+							"opacity"	: "1"
+						, 600, ->
+							$('h2.hello').text("Thank you!")
+							$('p.feedback').text("Your message has been successfully transmitted, and I'll get back to you as soon as possible.")
+							$('#submit').addClass('success').text('Message sent. Reset this form?')
+				, 'json'
+		# Return input background colours to original values when input activity detected
+		$('.airmail input[required=true], .airmail textarea[required=true]').keyup ->
+			$(this).css 'background', origin_colour
+
 .envelope
 	.envelope_inner
-		form.airmail
+		.airmail
 			.column
 				.postage
+					.paid
 				h2.hello Bonjour!
-				p Want to work together, or have a chat? Please feel free to contact me using this form, or any of the social networks listed below.
+				p.feedback Want to work together, or have a chat? Please feel free to contact me using this form, or any of the social networks listed below.
 			.column
 				.status
 				label for="name" name
@@ -15,7 +91,7 @@
 				label for="enquiry" Your message
 				textarea.enquiry name="enquiry" id="enquiry" placeholder="Your message" rows="7" cols="20"
 			.clearfix
-			button.send id="submit" type="submit" Send!
+			button.send.active id="submit" type="submit" Send!
 .folds
 	.over
 	.under
