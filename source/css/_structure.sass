@@ -9,8 +9,11 @@ body
 	+container(978px)
 	position: relative
 	+box-shadow ( 0 3px 12px 0 rgba(black, .3) )
-	margin-top: -2px
 	margin-bottom: 40px
+
+	// FF top margin fix
+	border-top: 1px solid transparent
+	margin-top: -3px
 
 // Push content under the header
 %headerpush:before
