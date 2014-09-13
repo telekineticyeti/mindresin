@@ -1,48 +1,132 @@
-#masthead nav
-	+suffix(2 of 12)
-	+last
-	display: table
-	height: 100%
-	
-	ul
-		display: none
-		+listReset
-		height: 100%
+a.burger
+	display: block
+	position: absolute
+	width: 30px
+	height: 30px
+	right: 30px
+	top: 35px
+	+border-radius(4px)
+	+transition(300ms)
+	cursor: pointer
 
-		li
-			display: table-cell
-			vertical-align: middle
-			margin-right: 10px
+	span
+		width: 20px
+		margin: 5px
+		display: block
+		height: 3px
+		border-bottom: 3px solid black
 
-			a
-				display: block
-				margin-right: 10px
-				+transition
-				+border-radius(6px)
+		&:before, &:after
+			content: ""
+			position: absolute
+			left: 5px
+			right: 5px
+			height: 3px
+			border-bottom: 3px solid black
+			
+		&:before
+			top: 11px
 
-				color: $chocolate
-				font-family: "Nanami Light", $fonts_standard
-				letter-spacing: .1em
+		&:after
+			top: 17px
 
-				text-transform: uppercase
-				text-decoration: none
-				+text-shadow(1 px 1px 0 rgba(white, 0.8) )
+	&:hover, &:focus
+		background-color: $teal
 
-				&:hover, &:focus
-					+transition
-					+box-shadow(0 0 22px 2px rgba(black, 0.4) inset)
-					+text-shadow(2px 1px 0 rgba(black, 0.4) )
-					color: $cream
-					background: $teal
+		span, span:before, span:after
+			border-color: white
 
-			&:last-child a
-				margin: 0
+	&.active
+		background-color: $orange
+
+		span, span:before, span:after
+			border-color: white
 
 	+breakpoint($tablet)
+		display: none
+
+#masthead nav
+	ul
+		display: none
+		position: absolute
+		z-index: -1
+		+listReset
+		background: rgba($awYissCobalt, .95)
+		left: 5px
+		right: 5px
+		top: 102px
+		+box-shadow(0 5px 10px 0 rgba(black, .5) inset)
+
+	li
+		text-align: right
+
+		// First item must be below the curve of the logo base
+		&:first-child
+			margin-top: 10px
+
+	a
+		display: block
+		+transition
+		color: white
+		text-transform: uppercase
+		text-decoration: none
+		font-size: 16px
+		letter-spacing: .1em
+		padding: 6px 10px
+
+		&:last-child
+			margin-bottom: 10px
+
+		&:hover, &:focus
+			background: rgba(white, .6)
+			color: black
+
+	+breakpoint($tablet)
+		+suffix(2 of 12)
+		+last
+		display: table
+		height: 100%
+		
 		ul
-			display: table-row
-		li a
-			padding: 6px 10px
+			// Overide mobile style
+			position: relative
+			z-index: 1
+			left: auto
+			right: auto
+			top: auto
+			background: transparent
+			+box-shadow(none)
+
+			height: 100%
+			display: table-row !important
+
+			li
+				display: table-cell
+				vertical-align: middle
+				margin-right: 10px
+				text-align: center
+
+				a
+					margin-right: 10px
+					+border-radius(6px)
+
+					color: $chocolate
+					font-family: "Nanami Light", $fonts_standard
+
+					+text-shadow(1 px 1px 0 rgba(white, 0.8) )
+
+					&:hover, &:focus
+						+box-shadow(0 0 22px 2px rgba(black, 0.4) inset)
+						+text-shadow(2px 1px 0 rgba(black, 0.4) )
+						color: $cream
+						background: $teal
+
+					// Overide mobile style
+					&:first-child
+						margin-bottom: 0
+
+					&:last-child
+						margin: 0
 
 	+breakpoint($desktop)
 		ul li a

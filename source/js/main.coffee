@@ -229,3 +229,19 @@ $(window).load ->
 	$("#main").delegate('.closeFeature', 'click', -> 
 		destroyFeature()
 	)
+
+	#
+	#	Burger nav
+	#
+	#
+	mainnav = $('#masthead nav ul')
+	$("#masthead")
+		.append '<a class="burger" title="Toggle navigation"><span></span></a>'
+		.delegate 'a.burger', 'click', ->
+			# console.log(mainnav)
+			if !mainnav.is(':visible')
+				mainnav.slideDown()
+				$(this).toggleClass('active')
+			else
+				mainnav.slideUp()
+				$(this).toggleClass('active')
